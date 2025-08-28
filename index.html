@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robux Collector Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        color: #fff;
+        text-align: center;
+        padding: 30px;
+    }
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: #ffea00;
+        text-shadow: 2px 2px #000;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+    #robux-count {
+        font-size: 2rem;
+        margin: 20px 0;
+        color: #ffea00;
+    }
+    .robux-box {
+        display: inline-block;
+        margin: 15px;
+        width: 100px;
+        height: 100px;
+        background-color: #ff4500;
+        border-radius: 15px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        transition: transform 0.2s;
+    }
+    .robux-box:hover {
+        transform: scale(1.1);
+    }
+</style>
+</head>
+<body>
+
+<h1>🎮 Robux Collector Game 🎮</h1>
+<p>Clique nas caixas para “coletar” Robux de graça</p>
+<div id="robux-count">Robux: 0</div>
+
+<div id="game-area">
+    <div class="robux-box"></div>
+    <div class="robux-box"></div>
+    <div class="robux-box"></div>
+    <div class="robux-box"></div>
+    <div class="robux-box"></div>
+</div>
+
+<p>RESGATE OS ROBUX ABAIXO</p>
+
+<script>
+let robux = 0;
+const robuxCount = document.getElementById('robux-count');
+const boxes = document.querySelectorAll('.robux-box');
+
+boxes.forEach(box => {
+    box.addEventListener('click', () => {
+        // Cada clique adiciona 100 Robux fictícios
+        robux += 100;
+        robuxCount.textContent = 'Robux: ' + robux;
+        // Efeito divertido
+        box.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+    });
+});
+</script>
+
+</body>
+</html>
