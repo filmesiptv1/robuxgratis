@@ -3,75 +3,223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robux Collector Game</title>
+<title>Robux Collector e Mini Jogos</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to right, #00c6ff, #0072ff);
-        color: #fff;
-        text-align: center;
-        padding: 30px;
-    }
-    h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        color: #ffea00;
-        text-shadow: 2px 2px #000;
-    }
-    p {
-        font-size: 1.2rem;
-    }
-    #robux-count {
-        font-size: 2rem;
-        margin: 20px 0;
-        color: #ffea00;
-    }
-    .robux-box {
-        display: inline-block;
-        margin: 15px;
-        width: 100px;
-        height: 100px;
-        background-color: #ff4500;
-        border-radius: 15px;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        transition: transform 0.2s;
-    }
-    .robux-box:hover {
-        transform: scale(1.1);
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #00c6ff, #0072ff);
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+h1 {
+    font-size: 2.5rem;
+    color: #ffea00;
+    text-shadow: 2px 2px #000;
+    margin-top: 20px;
+}
+#robux-count {
+    font-size: 2rem;
+    margin: 10px;
+}
+#game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: 20px auto;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #1f1f1f;
+}
+.robux-box {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: #ff4500;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+.robux-box:hover {
+    transform: scale(1.2);
+}
+.character {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    transition: left 0.5s linear;
+}
+#snake-game {
+    margin-top: 50px;
+}
+canvas {
+    background: #000;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid #fff;
+}
+button {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: none;
+    background: #ff4500;
+    color: #fff;
+    cursor: pointer;
+}
+button:hover {
+    background: #ff6347;
+}
 </style>
 </head>
 <body>
 
-<h1>🎮 Robux Collector Game 🎮</h1>
-<p>Clique nas caixas para “coletar” Robux de graça</p>
+<h1>🎮 Robux Collector Mini Jogos 🎮</h1>
 <div id="robux-count">Robux: 0</div>
 
-<div id="game-area">
-    <div class="robux-box"></div>
-    <div class="robux-box"></div>
-    <div class="robux-box"></div>
-    <div class="robux-box"></div>
-    <div class="robux-box"></div>
-</div>
+<div id="game-area"></div>
 
-<p>RESGATE OS ROBUX ABAIXO</p>
+<p>Bonecos do Roblox correndo!</p>
+<div id="characters"></div>
+
+<button id="restart-btn">Reiniciar Mini Jogo</button>
+
+<h2>🐍 Mini Jogo da Cobrinha</h2>
+<canvas id="snake" width="400" height="400"></canvas>
+<p>Pontos: <span id="snake-score">0</span></p>
 
 <script>
+// ===================== Robux Collector =====================
 let robux = 0;
 const robuxCount = document.getElementById('robux-count');
-const boxes = document.querySelectorAll('.robux-box');
+const gameArea = document.getElementById('game-area');
 
-boxes.forEach(box => {
-    box.addEventListener('click', () => {
-        // Cada clique adiciona 100 Robux fictícios
-        robux += 100;
+// Função criar caixas de Robux
+function createRobuxBox() {
+    const box = document.createElement('div');
+    box.className = 'robux-box';
+    const value = [100, 200, 500][Math.floor(Math.random()*3)];
+    box.textContent = value;
+    box.style.top = Math.random() * (gameArea.clientHeight - 60) + 'px';
+    box.style.left = Math.random() * (gameArea.clientWidth - 60) + 'px';
+    box.onclick = () => {
+        robux += value;
         robuxCount.textContent = 'Robux: ' + robux;
-        // Efeito divertido
-        box.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-    });
+        box.remove();
+    }
+    gameArea.appendChild(box);
+}
+
+// Criar várias caixas automaticamente
+for(let i=0; i<5; i++){
+    createRobuxBox();
+}
+const intervalBoxes = setInterval(() => {
+    if(document.querySelectorAll('.robux-box').length < 5){
+        createRobuxBox();
+    }
+}, 2000);
+
+// Reiniciar mini jogo
+document.getElementById('restart-btn').onclick = () => {
+    robux = 0;
+    robuxCount.textContent = 'Robux: 0';
+    document.querySelectorAll('.robux-box').forEach(b => b.remove());
+    for(let i=0;i<5;i++) createRobuxBox();
+};
+
+// ===================== Personagens Roblox correndo =====================
+const charactersContainer = document.getElementById('characters');
+const characterImages = [
+    'https://upload.wikimedia.org/wikipedia/commons/5/51/Roblox_Logo_2022.svg',
+    'https://static.wikia.nocookie.net/roblox/images/6/6e/Noob.png',
+    'https://static.wikia.nocookie.net/roblox/images/1/1c/Roblox_avatar.png'
+];
+
+function createCharacter() {
+    const img = document.createElement('img');
+    img.src = characterImages[Math.floor(Math.random()*characterImages.length)];
+    img.className = 'character';
+    img.style.top = Math.random() * 300 + 'px';
+    img.style.left = '0px';
+    document.body.appendChild(img);
+    let leftPos = 0;
+    setInterval(() => {
+        leftPos += 5;
+        if(leftPos > window.innerWidth) leftPos = -50;
+        img.style.left = leftPos + 'px';
+    }, 100);
+}
+for(let i=0;i<3;i++) createCharacter();
+
+// ===================== Mini Jogo da Cobrinha =====================
+const canvas = document.getElementById('snake');
+const ctx = canvas.getContext('2d');
+const box = 20;
+let snake = [{x: 9*box, y: 10*box}];
+let direction = null;
+let food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+let score = 0;
+
+document.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowUp' && direction !== 'DOWN') direction='UP';
+    if(e.key === 'ArrowDown' && direction !== 'UP') direction='DOWN';
+    if(e.key === 'ArrowLeft' && direction !== 'RIGHT') direction='LEFT';
+    if(e.key === 'ArrowRight' && direction !== 'LEFT') direction='RIGHT';
 });
+
+function draw() {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(let i=0;i<snake.length;i++){
+        ctx.fillStyle = (i===0)? '#00ff00':'#fff';
+        ctx.fillRect(snake[i].x,snake[i].y,box,box);
+        ctx.strokeStyle = '#000';
+        ctx.strokeRect(snake[i].x,snake[i].y,box,box);
+    }
+    ctx.fillStyle = 'red';
+    ctx.fillRect(food.x, food.y, box, box);
+    // Snake movement
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+    if(direction==='LEFT') snakeX -= box;
+    if(direction==='RIGHT') snakeX += box;
+    if(direction==='UP') snakeY -= box;
+    if(direction==='DOWN') snakeY += box;
+
+    // Snake eats food
+    if(snakeX === food.x && snakeY === food.y){
+        score += 1;
+        document.getElementById('snake-score').textContent = score;
+        food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+    }else{
+        snake.pop();
+    }
+
+    let newHead = {x: snakeX, y: snakeY};
+
+    // Collision
+    if(snakeX < 0 || snakeX >= canvas.width || snakeY <0 || snakeY >= canvas.height || snake.some(s => s.x===newHead.x && s.y===newHead.y)){
+        alert('Game Over! Pontos: ' + score);
+        snake = [{x: 9*box, y: 10*box}];
+        direction = null;
+        score = 0;
+        document.getElementById('snake-score').textContent = score;
+    }
+
+    snake.unshift(newHead);
+}
+
+setInterval(draw, 100);
 </script>
 
 </body>
