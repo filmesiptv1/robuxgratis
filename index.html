@@ -1,226 +1,238 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robux Collector e Mini Jogos</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #00c6ff, #0072ff);
-    color: #fff;
-    text-align: center;
-    overflow-x: hidden;
-}
-h1 {
-    font-size: 2.5rem;
-    color: #ffea00;
-    text-shadow: 2px 2px #000;
-    margin-top: 20px;
-}
-#robux-count {
-    font-size: 2rem;
-    margin: 10px;
-}
-#game-area {
-    position: relative;
-    width: 100%;
-    height: 400px;
-    margin: 20px auto;
-    border: 2px solid #fff;
-    border-radius: 15px;
-    overflow: hidden;
-    background: #1f1f1f;
-}
-.robux-box {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background-color: #ff4500;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #fff;
-    font-size: 14px;
-    transition: transform 0.2s;
-}
-.robux-box:hover {
-    transform: scale(1.2);
-}
-.character {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    transition: left 0.5s linear;
-}
-#snake-game {
-    margin-top: 50px;
-}
-canvas {
-    background: #000;
-    display: block;
-    margin: 20px auto;
-    border: 2px solid #fff;
-}
-button {
-    margin: 20px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    border: none;
-    background: #ff4500;
-    color: #fff;
-    cursor: pointer;
-}
-button:hover {
-    background: #ff6347;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mude seu corpo em 30 dias | Power Fit</title>
+  <meta name="description" content="Treinos rápidos, dietas acessíveis e resultados reais. Dietas que cabem no seu bolso e exercícios que cabem na sua rotina." />
+  <meta name="theme-color" content="#00ff88" />
+  <meta property="og:title" content="Mude seu corpo em 30 dias — Power Fit" />
+  <meta property="og:description" content="Treinos rápidos, dietas acessíveis e resultados reais." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://bielmelo1.github.io/Power-fit/og-cover.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Barra de acessibilidade -->
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-<h1>🎮 Robux Collector Mini Jogos 🎮</h1>
-<div id="robux-count">Robux: 0</div>
+  <!-- Header / Nav -->
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#topo" aria-label="Power Fit - Início">
+        <span class="logo-mark" aria-hidden>⚡</span>
+        <span class="logo-text">Power<span>Fit</span></span>
+      </a>
 
-<div id="game-area"></div>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
 
-<p>Bonecos do Roblox correndo!</p>
-<div id="characters"></div>
+      <nav id="menu" class="nav" aria-label="Principal">
+        <ul>
+          <li><a href="#treinos">Treinos</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#dietas">Dietas</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a class="social" target="_blank" rel="noopener" href="https://instagram.com" aria-label="Instagram">Instagram</a></li>
+        </ul>
+        <a href="#cta" class="btn btn-primary">Comece Agora</a>
+      </nav>
+    </div>
+  </header>
 
-<button id="restart-btn">Reiniciar Mini Jogo</button>
+  <!-- Hero -->
+  <main id="conteudo">
+    <section id="topo" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Transforme Seu Corpo em <span class="highlight">Apenas 30 Dias</span></h1>
+          <p>Treinos rápidos, dietas acessíveis e resultados reais. Dietas que cabem no seu bolso e exercícios que cabem na sua rotina!</p>
+          <div class="cta-group" id="cta">
+            <a href="#planos" class="btn btn-primary">Ver Planos</a>
+            <a href="#treinos" class="btn btn-ghost">Explorar Treinos</a>
+          </div>
+          <ul class="trust-points" aria-label="Diferenciais">
+            <li>✔️ Programas testados</li>
+            <li>✔️ Acompanhamento simples</li>
+            <li>✔️ Resultados visíveis</li>
+          </ul>
+        </div>
+        <div class="hero-art" aria-hidden>
+          <div class="orb orb-1"></div>
+          <div class="orb orb-2"></div>
+          <div class="card-hero">
+            <div class="chip">Novo</div>
+            <strong>Desafio 30D</strong>
+            <span>Treinos + Dieta</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h2>🐍 Mini Jogo da Cobrinha</h2>
-<canvas id="snake" width="400" height="400"></canvas>
-<p>Pontos: <span id="snake-score">0</span></p>
+    <!-- Treinos -->
+    <section id="treinos" class="section">
+      <div class="container">
+        <header class="section-head">
+          <h2>Treinos Essenciais</h2>
+          <p>Eficiência máxima, zero enrolação.</p>
+        </header>
+        <div class="grid cards-3">
+          <!-- Card 1 -->
+          <article class="card">
+            <div class="icon">
+              <!-- Ícone Força -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 10h3v4H3v-4zm15 0h3v4h-3v-4zM7 8h10v8H7V8zm-2 7h2v2H5v-2zm14 0h-2v2h2v-2z"/></svg>
+            </div>
+            <h3>Treino de Força</h3>
+            <p>Ganhe massa com exercícios rápidos e eficientes que aceleram seus resultados.</p>
+          </article>
+          <!-- Card 2 -->
+          <article class="card">
+            <div class="icon">
+              <!-- Ícone HIIT -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M3 12l7-7 4 4 7-7v14H3z"/></svg>
+            </div>
+            <h3>HIIT</h3>
+            <p>Explosão de queima de gordura, sem precisar de horas na academia.</p>
+          </article>
+          <!-- Card 3 -->
+          <article class="card">
+            <div class="icon">
+              <!-- Ícone Cross -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden><path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg>
+            </div>
+            <h3>Cross Training</h3>
+            <p>Variedade que desafia seu corpo e acelera resultados de forma divertida.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<script>
-// ===================== Robux Collector =====================
-let robux = 0;
-const robuxCount = document.getElementById('robux-count');
-const gameArea = document.getElementById('game-area');
+    <!-- Planos -->
+    <section id="planos" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h2>Planos Semanais</h2>
+          <p>Escolha seu ponto de partida.</p>
+        </header>
+        <div class="grid cards-3">
+          <article class="card plan">
+            <h3>Iniciante</h3>
+            <p class="muted">20 min/dia • Base sólida</p>
+            <ul class="list">
+              <li>Treinos 3x por semana</li>
+              <li>Aquecimento guiado</li>
+              <li>Grupo de suporte</li>
+            </ul>
+            <a class="btn btn-primary" href="#contato">Começar</a>
+          </article>
+          <article class="card plan best">
+            <div class="badge">Mais Popular</div>
+            <h3>Intermediário</h3>
+            <p class="muted">40 min/dia • Força + Cardio</p>
+            <ul class="list">
+              <li>Treinos 5x por semana</li>
+              <li>HIIT programado</li>
+              <li>Check-ins quinzenais</li>
+            </ul>
+            <a class="btn btn-primary" href="#contato">Selecionar</a>
+          </article>
+          <article class="card plan">
+            <h3>Avançado</h3>
+            <p class="muted">60 min/dia • Foco total</p>
+            <ul class="list">
+              <li>Treinos 6x por semana</li>
+              <li>Força periodizada</li>
+              <li>Relatório de progresso</li>
+            </ul>
+            <a class="btn btn-primary" href="#contato">Quero esse</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-// Função criar caixas de Robux
-function createRobuxBox() {
-    const box = document.createElement('div');
-    box.className = 'robux-box';
-    const value = [100, 200, 500][Math.floor(Math.random()*3)];
-    box.textContent = value;
-    box.style.top = Math.random() * (gameArea.clientHeight - 60) + 'px';
-    box.style.left = Math.random() * (gameArea.clientWidth - 60) + 'px';
-    box.onclick = () => {
-        robux += value;
-        robuxCount.textContent = 'Robux: ' + robux;
-        box.remove();
-    }
-    gameArea.appendChild(box);
-}
+    <!-- Dietas -->
+    <section id="dietas" class="section">
+      <div class="container">
+        <header class="section-head">
+          <h2>Cardápios Econômicos</h2>
+          <p>Dietas que cabem no seu bolso.</p>
+        </header>
+        <div class="grid cards-2">
+          <article class="card diet">
+            <h3>Perder Gordura</h3>
+            <p>Dieta simples: proteínas, vegetais e carboidratos moderados para emagrecer com saúde.</p>
+            <a class="link" href="#contato">Pedir amostra de cardápio →</a>
+          </article>
+          <article class="card diet">
+            <h3>Ganhar Massa</h3>
+            <p>Alimentação econômica e nutritiva, combinada com treinos estratégicos para ganhar músculos.</p>
+            <a class="link" href="#contato">Quero meu plano →</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-// Criar várias caixas automaticamente
-for(let i=0; i<5; i++){
-    createRobuxBox();
-}
-const intervalBoxes = setInterval(() => {
-    if(document.querySelectorAll('.robux-box').length < 5){
-        createRobuxBox();
-    }
-}, 2000);
+    <!-- Contato -->
+    <section id="contato" class="section alt">
+      <div class="container">
+        <header class="section-head">
+          <h2>Contato</h2>
+          <p>Mande uma mensagem e comece sua transformação hoje mesmo!</p>
+        </header>
+        <form class="form" action="https://formsubmit.co" method="post">
+          <div class="grid form-grid">
+            <label>
+              <span>Nome</span>
+              <input type="text" name="nome" placeholder="Seu nome" required />
+            </label>
+            <label>
+              <span>E-mail</span>
+              <input type="email" name="email" placeholder="voce@email.com" required />
+            </label>
+            <label class="full">
+              <span>Mensagem</span>
+              <textarea name="mensagem" rows="4" placeholder="Quero começar…" required></textarea>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me" aria-label="WhatsApp">Falar no WhatsApp</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
 
-// Reiniciar mini jogo
-document.getElementById('restart-btn').onclick = () => {
-    robux = 0;
-    robuxCount.textContent = 'Robux: 0';
-    document.querySelectorAll('.robux-box').forEach(b => b.remove());
-    for(let i=0;i<5;i++) createRobuxBox();
-};
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo footer-logo" href="#topo"><span class="logo-mark">⚡</span>Power<span>Fit</span></a>
+        <p class="muted small">© 2025 Power Fit — Treine forte, viva melhor.</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <ul class="footer-links">
+          <li><a href="#treinos">Treinos</a></li>
+          <li><a href="#planos">Planos</a></li>
+          <li><a href="#dietas">Dietas</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="socials">
+        <a target="_blank" rel="noopener" href="https://instagram.com" aria-label="Instagram">Instagram</a>
+        <a target="_blank" rel="noopener" href="https://facebook.com" aria-label="Facebook">Facebook</a>
+        <a href="mailto:" aria-label="E-mail">E-mail</a>
+      </div>
+    </div>
+  </footer>
 
-// ===================== Personagens Roblox correndo =====================
-const charactersContainer = document.getElementById('characters');
-const characterImages = [
-    'https://upload.wikimedia.org/wikipedia/commons/5/51/Roblox_Logo_2022.svg',
-    'https://static.wikia.nocookie.net/roblox/images/6/6e/Noob.png',
-    'https://static.wikia.nocookie.net/roblox/images/1/1c/Roblox_avatar.png'
-];
-
-function createCharacter() {
-    const img = document.createElement('img');
-    img.src = characterImages[Math.floor(Math.random()*characterImages.length)];
-    img.className = 'character';
-    img.style.top = Math.random() * 300 + 'px';
-    img.style.left = '0px';
-    document.body.appendChild(img);
-    let leftPos = 0;
-    setInterval(() => {
-        leftPos += 5;
-        if(leftPos > window.innerWidth) leftPos = -50;
-        img.style.left = leftPos + 'px';
-    }, 100);
-}
-for(let i=0;i<3;i++) createCharacter();
-
-// ===================== Mini Jogo da Cobrinha =====================
-const canvas = document.getElementById('snake');
-const ctx = canvas.getContext('2d');
-const box = 20;
-let snake = [{x: 9*box, y: 10*box}];
-let direction = null;
-let food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
-let score = 0;
-
-document.addEventListener('keydown', (e)=>{
-    if(e.key === 'ArrowUp' && direction !== 'DOWN') direction='UP';
-    if(e.key === 'ArrowDown' && direction !== 'UP') direction='DOWN';
-    if(e.key === 'ArrowLeft' && direction !== 'RIGHT') direction='LEFT';
-    if(e.key === 'ArrowRight' && direction !== 'LEFT') direction='RIGHT';
-});
-
-function draw() {
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    for(let i=0;i<snake.length;i++){
-        ctx.fillStyle = (i===0)? '#00ff00':'#fff';
-        ctx.fillRect(snake[i].x,snake[i].y,box,box);
-        ctx.strokeStyle = '#000';
-        ctx.strokeRect(snake[i].x,snake[i].y,box,box);
-    }
-    ctx.fillStyle = 'red';
-    ctx.fillRect(food.x, food.y, box, box);
-    // Snake movement
-    let snakeX = snake[0].x;
-    let snakeY = snake[0].y;
-    if(direction==='LEFT') snakeX -= box;
-    if(direction==='RIGHT') snakeX += box;
-    if(direction==='UP') snakeY -= box;
-    if(direction==='DOWN') snakeY += box;
-
-    // Snake eats food
-    if(snakeX === food.x && snakeY === food.y){
-        score += 1;
-        document.getElementById('snake-score').textContent = score;
-        food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
-    }else{
-        snake.pop();
-    }
-
-    let newHead = {x: snakeX, y: snakeY};
-
-    // Collision
-    if(snakeX < 0 || snakeX >= canvas.width || snakeY <0 || snakeY >= canvas.height || snake.some(s => s.x===newHead.x && s.y===newHead.y)){
-        alert('Game Over! Pontos: ' + score);
-        snake = [{x: 9*box, y: 10*box}];
-        direction = null;
-        score = 0;
-        document.getElementById('snake-score').textContent = score;
-    }
-
-    snake.unshift(newHead);
-}
-
-setInterval(draw, 100);
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
